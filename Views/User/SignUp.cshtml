@@ -1,0 +1,78 @@
+﻿
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MvcApplication2.Models.User
+ <link href="~/Content/themes/templatemo_style.css" rel="stylesheet" type="text/css" />
+<div id="templatemo_content_right">
+    @using(Html.BeginForm("saveUser","User",FormMethod.Post))
+    {
+       @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+         @Html.LabelFor(u=>u.UserName)
+        <br />
+        <br />
+	     @Html.TextBoxFor(u=>u.UserName,new{size="30"})
+        @Html.ValidationMessageFor(u => u.UserName)
+
+        
+        <input type ="button" value="Check Availability" id="b1" />
+         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+    <script>
+       
+        $(document).ready(function () {
+
+            $('#checking').hide();
+
+            $('#b1').click(function () {
+               
+                var userName = $('#UserName').val();
+
+                alert('User Name ='+ userName);
+                $('#checking').show();
+                $.getJSON("/User/CheckUserName?UserName=" + userName, function (data)
+                {
+                    $('#checking').hide();
+                    if (data) {
+                        $('#result').text("UserName already in use");
+                        
+                    }
+                    else {
+                        $('#result').text("User Name is not in use");
+                    }
+                });
+
+            });
+
+        });
+    </script>
+         <div id="checking">Checking...</div>
+        <div id="result"></div>
+
+        <br />
+        <br />
+         @Html.LabelFor(u=>u.Password)
+        <br />
+        <br />
+	     @Html.PasswordFor(u => u.Password, new { size = "30" })
+        @Html.ValidationMessageFor(u => u.Password)
+        <br />
+        <br />
+          @Html.LabelFor(u=>u.Email)
+        <br />
+        <br />
+	     @Html.TextBoxFor(u => u.Email, new { size = "30" })
+           
+        <br />
+        <br />
+       
+        <input type="submit" id="submit" value="SignUp" />
+
+        <br />
+        <br />
+        <br />
+        <br />
+    }
+    </div>

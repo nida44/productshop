@@ -1,0 +1,60 @@
+﻿@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model MvcApplication2.Models.Cloth
+ <link href="~/Content/themes/templatemo_style.css" rel="stylesheet" type="text/css" />
+<div id="templatemo_content_right">
+   <form action="/Products/AddProduct/" method="post" enctype="multipart/form-data">
+       @Html.LabelFor(m => m.Name)
+     
+       <br />
+       <br />
+       @Html.TextBoxFor(m => m.Name, new { size = "30" })
+         @Html.ValidationMessageFor(m => m.Name)
+      <br />
+       <br />
+       @Html.LabelFor(m => m.Details)
+       <br />
+       <br />
+       @Html.TextAreaFor(m => m.Details, new { size = "30" })
+         @Html.ValidationMessageFor(m => m.Details)
+       <br />
+       <br />
+       @Html.LabelFor(m => m.Price)
+       <br />
+       <br />
+       @Html.TextBoxFor(m => m.Price, new { size = "30" })
+         @Html.ValidationMessageFor(m => m.Price)
+       <br />
+       <br />
+       <label>Category</label>
+       <br />
+       <input type="radio" id="rd" name="Products"  value="Clothes">Clothes </>
+       <br />
+         <input type="radio" id="rd1" name="Products" value="Shoes">Shoes </>
+       <br />
+         <input type="radio" id="rd2" name="Products" value="Laptops">Laptops </>
+       <br />
+         <input type="radio" id="rd3" name="Products" value="Mobiles">Mobiles </>
+       <br />
+       <br />
+        <label>Upload Image</label>
+       <br />
+       <br />
+       <input type="file" name="image" />
+
+ 
+     <br />
+ <br />
+        <label>Quantity</label>
+       <br />
+       <br />
+       <input type="text" name="q" size="10"/>
+       <br />
+       <br />
+    <input type="submit" value="Submit" id ="submit" />
+       <br />
+       
+   </form>
+    </div>

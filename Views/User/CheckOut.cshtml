@@ -1,0 +1,26 @@
+﻿ <link href="~/Content/themes/templatemo_style.css" rel="stylesheet" type="text/css" />
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+<div id="templatemo_content_right">
+    
+<h1>Following items are present in your cart</h1>
+  
+    
+<table>
+    
+@foreach (var s in Model)
+{
+     <tr>
+                     <td>@s.ProductName</td></tr>
+     <tr>
+                     <td>@s.Quantity</td></tr>
+     <tr>
+                     <td>@s.Price</td></tr>
+  
+}
+    </table>
+    <h1>Your total bill is @ViewBag.x</h1>
+    </div>

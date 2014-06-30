@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+
+ <label>Select Category</label>
+       <br />
+       <input type="radio" id="rd" name="Products"  value="Clothes">Clothes </>
+       <br />
+         <input type="radio" id="rd1" name="Products" value="Shoes">Shoes </>
+       <br />
+         <input type="radio" id="rd2" name="Products" value="Laptops">Laptops </>
+       <br />
+         <input type="radio" id="rd3" name="Products" value="Mobiles">Mobiles </>
+       <br />
+       <br />
+<input type="button" id="b1" value="Search" />
+ @Scripts.Render("~/bundles/jquery")
+    <script>
+       
+        $(document).ready(function () {
+
+
+
+
+            $('#b1').click(function () {
+                var selValue = $('input[name=Products]:checked').val();
+                alert(selValue);
+
+                $.getJSON('/Products/getProducts?prd=' + $('input[name=Products]:checked').val(), function (data) {
+                    $.each(data, function (i, item) {
+                        $('#result').append('<tr><td>' + item.Name + '</td></tr> <tr><td>' + item.Price + '</td></tr> <tr><td><img src='+item.src+'</td></tr>>');
+                                            
+                        
+                    });
+
+
+
+
+
+
+                });
+
+            });
+        });
+    </script>
+         
+        
+            <table id="result">
+
+            </table>
+        
